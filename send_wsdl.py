@@ -1,3 +1,7 @@
+
+import socket  #socket library
+import sys
+
 """
 A simple client, which establishes a TCP connection with a server.
 Prompt for a user input, which is sent to the server. Then, waits
@@ -5,14 +9,11 @@ for a message from the server, which gets displayed.
 """
 SERVICE_NAME = 'Hello '
 PORT = 12345
-#host = '127.0.0.1'  #localhost
-host = '130.85.251.172'  #localhost
+#registry = '127.0.0.1'  #localhost
+registry_hard = '130.85.241.172'  #######################registry address
 
-#host = socket.gethostname()  #return a hostname of this machine
+#hostname = socket.gethostname()  #return a hostname of this machine
 
-
-import socket  #socket library
-import sys
 
 f = open('wsdl/Hello.wsdl', 'r+')
 lines = [line for line in f.readlines()]
@@ -28,11 +29,15 @@ for line in lines:
         #print(tok2)
         print('wsdl address extracted is: ', wsdl_addr)
 
+        hostname = socket.gethostname()    
+        server_ip = socket.gethostbyname(hostname)    
+        tomcat_addr = wsdl_addr[:7]+server_ip+wsdl_addr[16:]
+        print('wsdl address to send is: ', tomcat_addr)
 
 #create a socket object with IPv4 and TCP protocol
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-#connect to a server with host address and specified port
-s.connect((host, PORT))
+#connect to a server with registry address and specified port
+s.connect((registry_hard, PORT))
 
 #prompt for a user input
 #mssg = raw_input("Enter message:")
@@ -41,7 +46,7 @@ s.connect((host, PORT))
 
 #send wsdl address to the registry server
 print ('sending the extracted wsdl address to registry')
-mssg = SERVICE_NAME+wsdl_addr
+mssg = SERVICE_NAME+tomcat_addr
 print(mssg)
 s.send(mssg)
 

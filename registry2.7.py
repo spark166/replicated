@@ -10,9 +10,12 @@ import time
 PORT = 12345
 replica_port =12346
 #host = '130.85.241.172'  #localhost
-host = '127.0.0.1'  #localhost
-replica = '127.0.0.1'
-#host = socket.gethostname()  #return this machine's hostname
+#host = '127.0.0.1'  #localhost
+hostname = socket.gethostname()
+host = socket.gethostbyname(hostname)
+print('Registry is running at: ', host)
+
+replica_hard = '130.85.251.172'    #########################################need to hard code############
 
 add_wsdl = {}  #dict to hold wsdl addresses
 add_load = {}  #load dictionary
@@ -32,7 +35,7 @@ def contacted(clientsocket):
     #create a socket object with IPv4 and TCP protocol
     s1 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     #connect to a server with host address and specified port
-    s1.connect((replica, replica_port))
+    s1.connect((replica_hard, replica_port))
 
     #send wsdl address to the registry server
     print ('publishing wsdl to replica')

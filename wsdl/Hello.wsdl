@@ -81,7 +81,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       <wsdl:port binding="impl:HelloSoapBinding" name="Hello">
 
-         <wsdlsoap:address location="http://130.85.241.172:8080/Hello/services/Hello"/>
+         <wsdlsoap:address location="http://localhost:8080/Hello/services/Hello"/>
 
       </wsdl:port>
 

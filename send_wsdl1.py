@@ -1,3 +1,7 @@
+
+import socket  #socket library
+import sys
+
 """
 A simple client, which establishes a TCP connection with a server.
 Prompt for a user input, which is sent to the server. Then, waits
@@ -10,9 +14,6 @@ host = '127.0.0.1'  #localhost
 
 #host = socket.gethostname()  #return a hostname of this machine
 
-
-import socket  #socket library
-import sys
 
 f = open('wsdl/Hello.wsdl', 'r+')
 lines = [line for line in f.readlines()]
