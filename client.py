@@ -1,18 +1,19 @@
 from zeep import Client
 import socket  #socket library
 import os
+import pyping
 
 PORT = 12345
-host = '127.0.0.1'  #localhost
-#host = '130.85.251.172' 
-replica = '127.0.0.1'
+#host = '127.0.0.1'  #localhost
+host = '130.85.251.172' 
+replica = '130.85.241.172'
 #host = socket.gethostname()  #return a hostname of this machine
 
-mssg = 'Request Add'
+mssg = 'Request Hello'
 
 # ping if registry is up
-response = os.system("ping -c 1 " + host)
-if response == 0:
+response = pyping.ping(host)
+if response.ret_code == 0:
   print('registry at '+host+ ' is up.')
   registry = host
 else:
@@ -36,4 +37,5 @@ client = Client(wsdl_received+'?wsdl')
 result = client.service.helloName('AOS 621 Project')
 print(result)
 
+#assert result == 62.137
 #assert result == 62.137
