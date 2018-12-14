@@ -4,6 +4,7 @@ import os
 import pyping
 
 PORT = 12345
+PORT2 = 12346
 #host = '127.0.0.1'  #localhost
 host = '130.85.251.172' 
 replica = '130.85.241.172'
@@ -19,6 +20,8 @@ if response.ret_code == 0:
 else:
   print ('registry at '+host+' is down!')
   registry = replica
+  PORT = PORT2
+  
 
 #create a socket object with IPv4 and TCP protocol
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -36,6 +39,3 @@ s.close()
 client = Client(wsdl_received+'?wsdl')
 result = client.service.helloName('AOS 621 Project')
 print(result)
-
-#assert result == 62.137
-#assert result == 62.137
