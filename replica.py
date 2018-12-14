@@ -9,8 +9,8 @@ import time
 
 PORT = 12346
 #replica_port =12346
-#host = '130.85.241.172'  #localhost
-host = '127.0.0.1'  #localhost
+host = '130.85.241.172'  #localhost
+#host = '127.0.0.1'  #localhost
 #replica = '127.0.0.1'
 #host = socket.gethostname()  #return this machine's hostname
 
